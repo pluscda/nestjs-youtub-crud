@@ -7,6 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(expose('public'));
   const options = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle('NestJS Crud  example')
     .setDescription('NestJS Crud  example')
     .setVersion('1.0')
