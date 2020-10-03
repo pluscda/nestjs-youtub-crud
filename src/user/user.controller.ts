@@ -34,7 +34,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
     },
   },
 })
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 @CrudAuth({
   property: 'user',
   filter: (user: UserEntity) => {

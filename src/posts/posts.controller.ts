@@ -1,7 +1,13 @@
 import { Controller, Get, UseGuards, Request, Param } from '@nestjs/common';
 import {
-  Crud, CrudOptions, CrudController, CrudAuth,
-  CrudRequest, ParsedRequest, ParsedBody, Override
+  Crud,
+  CrudOptions,
+  CrudController,
+  CrudAuth,
+  CrudRequest,
+  ParsedRequest,
+  ParsedBody,
+  Override,
 } from '@nestjsx/crud';
 import { PostEntity } from './posts.entity';
 import { PostsService } from './posts.service';
@@ -39,21 +45,22 @@ import { IsOwnerGuard } from 'src/guards/is-owner.guard';
     },
   },
 } as CrudOptions)
-// @UseGuards(JwtAuthGuard)
+// //@UseGuards(JwtAuthGuard)
 @Controller('posts')
 export class PostsController implements CrudController<PostEntity> {
-  constructor(public service: PostsService) { }
+  constructor(public service: PostsService) {}
 
   get base(): any {
     return this;
   }
 
   @Override()
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   createOne(
     @Request() req: Express.Request,
     @ParsedRequest() pReq: CrudRequest,
-    @ParsedBody() body: Partial<PostEntity>) {
+    @ParsedBody() body: Partial<PostEntity>,
+  ) {
     console.log({ user: (req as any).user, create: true });
     const obj = { ...body, user_id: (req as any).user.id };
     return this.base.createOneBase(pReq, obj);
@@ -65,7 +72,8 @@ export class PostsController implements CrudController<PostEntity> {
     @Request() req: Express.Request,
     @Param('id') id: number,
     @ParsedRequest() pReq: CrudRequest,
-    @ParsedBody() body: Partial<PostEntity>) {
+    @ParsedBody() body: Partial<PostEntity>,
+  ) {
     console.log({ user: (req as any).user, update: true, id });
     const obj = { ...body, user_id: (req as any).user.id };
     return this.base.updateOneBase(pReq, obj);
