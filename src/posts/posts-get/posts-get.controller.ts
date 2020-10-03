@@ -44,12 +44,12 @@ import { IsOwnerGuard } from 'src/guards/is-owner.guard';
     },
   },
 } as CrudOptions)
-//@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 @CrudAuth({
   property: 'user',
   filter: (user: UserEntity) => {
     console.log(user);
-    return { user_id: user.id };
+    // return { user_id: user.id };
   },
 })
 @Controller('posts')

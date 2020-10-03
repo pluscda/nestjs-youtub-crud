@@ -38,7 +38,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 @CrudAuth({
   property: 'user',
   filter: (user: UserEntity) => {
-    return { id: user.id };
+    //return { id: user.id };
   },
 })
 @Controller('user')
